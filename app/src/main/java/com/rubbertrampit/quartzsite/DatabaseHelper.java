@@ -22,7 +22,7 @@ public class DatabaseHelper
     // The Android's default system path
     // of your application database.
     private static String DB_PATH = "";
-    private static String DB_NAME = "DemoDatabase.db";
+    private static String DB_NAME = "quartzsite.db";
     private SQLiteDatabase myDataBase;
     private final Context myContext;
     private SQLiteOpenHelper sqLiteOpenHelper;
@@ -219,12 +219,12 @@ public class DatabaseHelper
 
         // query help us to return all data
         // the present in the ALGO_TOPICS table.
-        String query = "SELECT * FROM " + ALGO_TOPICS;
+        String query = "SELECT * FROM Restaurants";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(0));
+                list.add(cursor.getString(1));
             } while (cursor.moveToNext());
         }
         return list;
