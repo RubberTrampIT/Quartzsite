@@ -27,11 +27,6 @@ public class DatabaseHelper
     private final Context myContext;
     private SQLiteOpenHelper sqLiteOpenHelper;
 
-    // Table name in the database.
-    public static final String
-            ALGO_TOPICS
-            = "algo_topics";
-
     /**
      * Constructor
      * Takes and keeps a reference of
@@ -225,6 +220,7 @@ public class DatabaseHelper
         if (cursor.moveToFirst()) {
             do {
                 list.add(cursor.getString(1));
+                list.add(cursor.getString(5));
             } while (cursor.moveToNext());
         }
         return list;

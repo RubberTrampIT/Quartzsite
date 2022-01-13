@@ -1,9 +1,12 @@
 package com.rubbertrampit.quartzsite;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
+import android.widget.GridLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +27,8 @@ public class Activity_Restaurants
                 = findViewById(R.id.recycler_view_restaurants);
 
         db = new DatabaseHelper(this);
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(false);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false));
         data = new ArrayList<>();
         fetchData();
     }
