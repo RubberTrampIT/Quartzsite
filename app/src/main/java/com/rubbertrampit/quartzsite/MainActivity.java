@@ -25,6 +25,8 @@ public class MainActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        RegularClass regularClass = new RegularClass(this);
+
 //        recyclerView
 //                = findViewById(R.id.my_recycler_view);
 //

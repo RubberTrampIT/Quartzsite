@@ -50,7 +50,8 @@ public class DatabaseHelper
 
         boolean dbExist = checkDataBase();
 
-        if (dbExist) {
+        int testing = 0; //TODO: Remove this after testing
+        if (dbExist && testing == 0) {
             // do nothing - database already exist
         }
         else {
@@ -200,7 +201,7 @@ public class DatabaseHelper
 //    }
 
     // Get all restaurants for RecyclerView
-    public List<String> getAllRestaurants(
+    public List<String> getAllRestaurantNames(
             Activity activity)
     {
         sqLiteOpenHelper
@@ -209,20 +210,54 @@ public class DatabaseHelper
                 = sqLiteOpenHelper
                 .getWritableDatabase();
 
-        List<String> list
+        List<String> listNames
                 = new ArrayList<>();
-
         // query help us to return all data
         // the present in the ALGO_TOPICS table.
-        String query = "SELECT * FROM Restaurants";
+        String query = "SELECT name FROM Restaurants";
         Cursor cursor = db.rawQuery(query, null);
+
 
         if (cursor.moveToFirst()) {
             do {
-                list.add(cursor.getString(1));
-                list.add(cursor.getString(5));
+                listNames.add(cursor.getString(0));
+//                listNames.add(cursor.getString(8));
+//                list.add(cursor.getString(1));
+//                list.add(cursor.getString(5));
             } while (cursor.moveToNext());
+//            cursor.close();
         }
-        return list;
+
+//        CombineResults results = new CombineResults();
+        return listNames;
+
+    }
+
+    public List<String> getAllRestaurantImages(
+            Activity activity)
+    {
+        sqLiteOpenHelper
+                = new DatabaseHelper(activity);
+        SQLiteDatabase db
+                = sqLiteOpenHelper
+                .getWritableDatabase();
+
+        List<String> listImages
+                = new ArrayList<>();
+        String query = "SELECT image FROM Restaurants";
+        Cursor cursor = db.rawQuery(query, null);
+
+
+        if (cursor.moveToFirst()) {
+            do {
+                listImages.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+//            cursor.close();
+        }
+
+//        CombineResults results = new CombineResults();
+        Log.d("TROUBLESHOOTING", "listImages contains: " + listImages.size());
+        return listImages;
+
     }
 }

@@ -1,26 +1,36 @@
 package com.rubbertrampit.quartzsite;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter
         extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<String> dataNames;
+    private List<String> dataImages;
     Activity activity;
+    Context mContext;
 
-    public MyAdapter(Activity activity,
-                     List<String> data)
+    public MyAdapter(Context context, Activity activity,
+                     List<String> dataNames, List<String> dataImages)
     {
-        this.data = data;
+        this.dataNames = dataNames;
+        this.dataImages = dataImages;
         this.activity = activity;
+        mContext = context;
     }
 
     // This method is used to attach
@@ -45,24 +55,38 @@ public class MyAdapter
             @NonNull ViewHolder holder,
             int position)
     {
-        holder.topic_name
-                .setText(data.get(position));
+
+        holder.name.setText(dataNames.get((position)));
+        int resId = getImageResourceId(mContext, dataImages.get(position));
+        holder.image.setImageResource(resId);
     }
 
     @Override
     public int getItemCount()
     {
-        return data.size();
+        return dataNames.size();
     }
 
     class ViewHolder
             extends RecyclerView.ViewHolder {
-        TextView topic_name;
+        TextView name;
+        ImageView image;
+
         public ViewHolder(View itemView)
         {
             super(itemView);
-            this.topic_name
-                    = itemView.findViewById(R.id.textView);
+            name  = (TextView) itemView.findViewById(R.id.textView);
+            image = (ImageView) itemView.findViewById(R.id.image);
         }
     }
+
+    // Get image id
+
+    private int getImageResourceId(Context mContext, String mImageName){
+        int resID = mContext.getResources().getIdentifier(mImageName , "drawable", mContext.getPackageName());
+
+        return resID;
+    }
 }
+
+
