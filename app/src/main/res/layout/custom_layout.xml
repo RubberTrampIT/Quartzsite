@@ -18,12 +18,17 @@
         android:src="@mipmap/ic_launcher"
          />
     <TextView
-        android:textStyle="normal"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:layout_margin="5dp"
-        android:textSize="20sp"
-        android:textColor="@color/grid_text_color"
+        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="3"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
         android:id="@+id/textView"/>
 </RelativeLayout>

@@ -50,7 +50,7 @@ public class DatabaseHelper
 
         boolean dbExist = checkDataBase();
 
-        int testing = 0; //TODO: Remove this after testing
+        int testing = 1; //TODO: Remove this after testing
         if (dbExist && testing == 0) {
             // do nothing - database already exist
         }
@@ -225,7 +225,7 @@ public class DatabaseHelper
 //                list.add(cursor.getString(1));
 //                list.add(cursor.getString(5));
             } while (cursor.moveToNext());
-//            cursor.close();
+            cursor.close();
         }
 
 //        CombineResults results = new CombineResults();
@@ -252,7 +252,7 @@ public class DatabaseHelper
             do {
                 listImages.add(cursor.getString(0));
             } while (cursor.moveToNext());
-//            cursor.close();
+            cursor.close();
         }
 
 //        CombineResults results = new CombineResults();
